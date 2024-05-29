@@ -8,6 +8,9 @@ const postRouter = require("./routes/posts");
 const userRouter = require("./routes/users");
 const uploadRouter = require("./routes/upload");
 const { resErrorProd, resErrorDev } = require("./service/nodeEnvError");
+const swaggerUI = require('swagger-ui-express');
+const swaggerFile = require('./swagger_output.json');
+
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -15,6 +18,8 @@ app.use(logger("dev"));
 app.use(postRouter);
 app.use('/upload', uploadRouter);
 app.use('/users', userRouter);
+app.use('/api-doc', swaggerUI.serve, swaggerUI.setup(swaggerFile));
+
 app.all("*", (req, res) => {
   res.send(`找不到 ${req.originalUrl} 路徑`);
 });
@@ -42,8 +47,8 @@ const dbUrl = process.env.URL.replace("<password>", process.env.PASSWORD);
 const localUrl = process.env.LOCAL_URL;
 
 mongoose
-  // .connect(localUrl)
-  .connect(dbUrl)
+  // .connect(dbUrl)
+  .connect(localUrl)
   .then(() => console.log("資料庫連線成功"))
   .catch(() => console.error("資料庫連線失敗"));
 

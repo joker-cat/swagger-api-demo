@@ -29,7 +29,6 @@ function valPostKeyKey(keyParams) {
 function valSignupKey(keyParams) {
   if (keyParams.length === 0) return appError(400, "沒有傳入修改資料");
   for (const key of keyParams) {
-    console.log(key, signupKey.includes(key));
     if (!signupKey.includes(key)) return appError(400, "有非規定屬性值");
   }
   return true;
