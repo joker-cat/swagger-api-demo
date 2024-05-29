@@ -1,0 +1,1232 @@
+{
+	"info": {
+		"_postman_id": "2550f520-f9a5-44a6-9e14-5a4f9f211f74",
+		"name": "2024nodejs_finaly_hw8",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29889308"
+	},
+	"item": [
+		{
+			"name": "local",
+			"item": [
+				{
+					"name": "會員功能",
+					"item": [
+						{
+							"name": "註冊",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"tom\",\r\n    \"email\":\"tom@gmail.com\",\r\n    \"password\":\"tom123456\",\r\n    \"confirmPassword\":\"tom123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3005/users/sign_up",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"users",
+										"sign_up"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "登入",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NDQzNzc1MjU3ZTZhOWU1OTVjZTk0MSIsImlhdCI6MTcxNTc0NjY3NywiZXhwIjoxNzE2MzUxNDc3fQ.geBNZ_kBZBPg0EhzaINc9UnHrsSLDFw_DSHNBTVqz3",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"joker@gmail.com\",\r\n    \"password\":\"joker123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3005/users/sign_in",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"users",
+										"sign_in"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "重設密碼",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4OWY1ODAyNjQ2OGQwMjVhNGY2ZCIsImlhdCI6MTcxNjgxNTgwMCwiZXhwIjoxNzE3NDIwNjAwfQ.jtR6wQtbl9FPVKhXuKYHy1GgR4JENPLRHQ747JMHaY8",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"joker123456\",\r\n    \"confirmPassword\": \"joker123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3005/users/updatePassword",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"users",
+										"updatePassword"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "個人資料",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4OWY1ODAyNjQ2OGQwMjVhNGY2ZCIsImlhdCI6MTcxNjgwMDQwOSwiZXhwIjoxNzE3NDA1MjA5fQ.JN6k2sCH66-EIheLc5WTLGYzQC4zslM_U5BIRdA1haA"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3005/users/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"users",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "修改個人資料",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4OWY1ODAyNjQ2OGQwMjVhNGY2ZCIsImlhdCI6MTcxNjgxNTgwMCwiZXhwIjoxNzE3NDIwNjAwfQ.jtR6wQtbl9FPVKhXuKYHy1GgR4JENPLRHQ747JMHaY8",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"tommy123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3005/users/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"users",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "會員按讚追蹤動態",
+					"item": [
+						{
+							"name": "追蹤",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4OWY1ODAyNjQ2OGQwMjVhNGY2ZCIsImlhdCI6MTcxNjgwNjU1NiwiZXhwIjoxNzE3NDExMzU2fQ.N3HUbZfixABZTftLnFXJvgxjmBtVuW8wNLCN7HqIOzw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3005/users/66518faf2f394d011443407a/follow",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"users",
+										"66518faf2f394d011443407a",
+										"follow"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "取消追蹤",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4OWY1ODAyNjQ2OGQwMjVhNGY2ZCIsImlhdCI6MTcxNjgwNjU1NiwiZXhwIjoxNzE3NDExMzU2fQ.N3HUbZfixABZTftLnFXJvgxjmBtVuW8wNLCN7HqIOzw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3005/users/66518faf2f394d011443407a/unfollow",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"users",
+										"66518faf2f394d011443407a",
+										"unfollow"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "取得個人按讚列表",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4OWY1ODAyNjQ2OGQwMjVhNGY2ZCIsImlhdCI6MTcxNjgxNTgwMCwiZXhwIjoxNzE3NDIwNjAwfQ.jtR6wQtbl9FPVKhXuKYHy1GgR4JENPLRHQ747JMHaY8"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3005/users/getLikeList",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"users",
+										"getLikeList"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "取得個人追蹤名單",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4OWY1ODAyNjQ2OGQwMjVhNGY2ZCIsImlhdCI6MTcxNjgwNjU1NiwiZXhwIjoxNzE3NDExMzU2fQ.N3HUbZfixABZTftLnFXJvgxjmBtVuW8wNLCN7HqIOzw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3005/users/following",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"users",
+										"following"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "動態貼文",
+					"item": [
+						{
+							"name": "所有貼文",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3005/posts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "一則貼文",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3005/posts/66519fbc6d8c68c95ca3bfac",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"posts",
+										"66519fbc6d8c68c95ca3bfac"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "個人所有貼文",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4OWY1ODAyNjQ2OGQwMjVhNGY2ZCIsImlhdCI6MTcxNjgxNTgwMCwiZXhwIjoxNzE3NDIwNjAwfQ.jtR6wQtbl9FPVKhXuKYHy1GgR4JENPLRHQ747JMHaY8"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3005/post/user/665189f58026468d025a4f6d",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"post",
+										"user",
+										"665189f58026468d025a4f6d"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "發文",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4OWY1ODAyNjQ2OGQwMjVhNGY2ZCIsImlhdCI6MTcxNjgwMDQwOSwiZXhwIjoxNzE3NDA1MjA5fQ.JN6k2sCH66-EIheLc5WTLGYzQC4zslM_U5BIRdA1haA"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"user\": \"665189f58026468d025a4f6d\",\r\n  \"content\": \"0527 - 第五篇\",\r\n  \"tags\": [\r\n    \"node\",\"hw8\"\r\n  ],\r\n  \"type\": \"學習\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3005/post",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"post"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "修改文章",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4OWY1ODAyNjQ2OGQwMjVhNGY2ZCIsImlhdCI6MTcxNjYyMjUwNiwiZXhwIjoxNzE3MjI3MzA2fQ.GV5b5oMq-5Rl33V5I6dZvul09XQxeVYjmWUakWCOZAg"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"content\":\"我修改了最終任務\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3005/post/6651912fd8a9c964548a8714",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"post",
+										"6651912fd8a9c964548a8714"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "刪除個人一則貼文",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4ZmFmMmYzOTRkMDExNDQzNDA3YSIsImlhdCI6MTcxNjYyMzE2OSwiZXhwIjoxNzE3MjI3OTY5fQ.3X6zLUkgl9jaz8Z65bTdjGQ32YMMCbqW03rRlYB9CQs"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3005/post/6651912fd8a9c964548a8714",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"post",
+										"6651912fd8a9c964548a8714"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "刪除個人全部貼文",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4ZmFmMmYzOTRkMDExNDQzNDA3YSIsImlhdCI6MTcxNjYyNTM2MywiZXhwIjoxNzE3MjMwMTYzfQ.mlx3ZAluVcTJ_K-yfEOaBU_1lsE8QUg5SwgNL36L-hc"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\":\"tom123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3005/posts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "留言",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4ZmFmMmYzOTRkMDExNDQzNDA3YSIsImlhdCI6MTcxNjY0MTcwNSwiZXhwIjoxNzE3MjQ2NTA1fQ.a4fQxweHN51-8UdEnOT8LdOMm1HNCZ-YGX36C3Px544"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"comment\":\"456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3005/posts/6651dfda0206cf5d741f0263/comment",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"posts",
+										"6651dfda0206cf5d741f0263",
+										"comment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "按讚",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4OWY1ODAyNjQ2OGQwMjVhNGY2ZCIsImlhdCI6MTcxNjgxNTgwMCwiZXhwIjoxNzE3NDIwNjAwfQ.jtR6wQtbl9FPVKhXuKYHy1GgR4JENPLRHQ747JMHaY8"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3005/posts/66544be7b22dd7c452abbd90/like",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"posts",
+										"66544be7b22dd7c452abbd90",
+										"like"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "取消按讚",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4OWY1ODAyNjQ2OGQwMjVhNGY2ZCIsImlhdCI6MTcxNjgxNTgwMCwiZXhwIjoxNzE3NDIwNjAwfQ.jtR6wQtbl9FPVKhXuKYHy1GgR4JENPLRHQ747JMHaY8"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3005/posts/66544be7b22dd7c452abbd90/unlike",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"posts",
+										"66544be7b22dd7c452abbd90",
+										"unlike"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "其他",
+					"item": [
+						{
+							"name": "上傳圖片",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4OWY1ODAyNjQ2OGQwMjVhNGY2ZCIsImlhdCI6MTcxNjgxNTgwMCwiZXhwIjoxNzE3NDIwNjAwfQ.jtR6wQtbl9FPVKhXuKYHy1GgR4JENPLRHQ747JMHaY8",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3005/upload/file",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"upload",
+										"file"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "render",
+			"item": [
+				{
+					"name": "會員功能",
+					"item": [
+						{
+							"name": "註冊",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"tom\",\r\n    \"email\":\"tom@gmail.com\",\r\n    \"password\":\"tom123456\",\r\n    \"confirmPassword\":\"tom123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://two024nodejs-finaly-hw8.onrender.com/users/sign_up",
+									"protocol": "https",
+									"host": [
+										"two024nodejs-finaly-hw8",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"users",
+										"sign_up"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "登入",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NDQzNzc1MjU3ZTZhOWU1OTVjZTk0MSIsImlhdCI6MTcxNTc0NjY3NywiZXhwIjoxNzE2MzUxNDc3fQ.geBNZ_kBZBPg0EhzaINc9UnHrsSLDFw_DSHNBTVqz3",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"joker@gmail.com\",\r\n    \"password\":\"joker123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://two024nodejs-finaly-hw8.onrender.com/users/sign_in",
+									"protocol": "https",
+									"host": [
+										"two024nodejs-finaly-hw8",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"users",
+										"sign_in"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "重設密碼",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NDQ0NmNiMmFlYzI0MmMwYzcxYWY2MSIsImlhdCI6MTcxNTc1MDY4NiwiZXhwIjoxNzE2MzU1NDg2fQ.28oCD1Qbh_p-k1FwsGWyOk1nx0EZKmDrPsd36kJ-CMY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"tomcat123456\",\r\n    \"confirmPassword\": \"tomcat123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://two024nodejs-finaly-hw8.onrender.com/users/updatePassword",
+									"protocol": "https",
+									"host": [
+										"two024nodejs-finaly-hw8",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"users",
+										"updatePassword"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "個人資料",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4OWY1ODAyNjQ2OGQwMjVhNGY2ZCIsImlhdCI6MTcxNjgwMDQwOSwiZXhwIjoxNzE3NDA1MjA5fQ.JN6k2sCH66-EIheLc5WTLGYzQC4zslM_U5BIRdA1haA"
+									}
+								],
+								"url": {
+									"raw": "https://two024nodejs-finaly-hw8.onrender.com/users/profile",
+									"protocol": "https",
+									"host": [
+										"two024nodejs-finaly-hw8",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"users",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "修改個人資料",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NDYxYTcyZmRhODkwNGI0ZTY2NGZmOCIsImlhdCI6MTcxNTg3MDMyMiwiZXhwIjoxNzE2NDc1MTIyfQ.lAZryp64onuNl_6ujsWAHhXQatNgX5rDq8f7s02kc5s",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"tommy123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://two024nodejs-finaly-hw8.onrender.com/users/profile",
+									"protocol": "https",
+									"host": [
+										"two024nodejs-finaly-hw8",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"users",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "會員按讚追蹤動態",
+					"item": [
+						{
+							"name": "追蹤",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4OWY1ODAyNjQ2OGQwMjVhNGY2ZCIsImlhdCI6MTcxNjgwNjU1NiwiZXhwIjoxNzE3NDExMzU2fQ.N3HUbZfixABZTftLnFXJvgxjmBtVuW8wNLCN7HqIOzw"
+									}
+								],
+								"url": {
+									"raw": "https://two024nodejs-finaly-hw8.onrender.com/users/66518faf2f394d011443407a/follow",
+									"protocol": "https",
+									"host": [
+										"two024nodejs-finaly-hw8",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"users",
+										"66518faf2f394d011443407a",
+										"follow"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "取消追蹤",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4OWY1ODAyNjQ2OGQwMjVhNGY2ZCIsImlhdCI6MTcxNjgwNjU1NiwiZXhwIjoxNzE3NDExMzU2fQ.N3HUbZfixABZTftLnFXJvgxjmBtVuW8wNLCN7HqIOzw"
+									}
+								],
+								"url": {
+									"raw": "https://two024nodejs-finaly-hw8.onrender.com/users/66518faf2f394d011443407a/unfollow",
+									"protocol": "https",
+									"host": [
+										"two024nodejs-finaly-hw8",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"users",
+										"66518faf2f394d011443407a",
+										"unfollow"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "取得個人按讚列表",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4ZmFmMmYzOTRkMDExNDQzNDA3YSIsImlhdCI6MTcxNjc5OTI1OSwiZXhwIjoxNzE3NDA0MDU5fQ.55zAI03GGxBxyfaBlmtfCeUOTxt41zLcOr0oLdMyVKg"
+									}
+								],
+								"url": {
+									"raw": "https://two024nodejs-finaly-hw8.onrender.com/users/getLikeList",
+									"protocol": "https",
+									"host": [
+										"two024nodejs-finaly-hw8",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"users",
+										"getLikeList"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "取得個人追蹤名單",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4OWY1ODAyNjQ2OGQwMjVhNGY2ZCIsImlhdCI6MTcxNjgwNjU1NiwiZXhwIjoxNzE3NDExMzU2fQ.N3HUbZfixABZTftLnFXJvgxjmBtVuW8wNLCN7HqIOzw"
+									}
+								],
+								"url": {
+									"raw": "https://two024nodejs-finaly-hw8.onrender.com/users/following",
+									"protocol": "https",
+									"host": [
+										"two024nodejs-finaly-hw8",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"users",
+										"following"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "動態貼文",
+					"item": [
+						{
+							"name": "所有貼文",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://two024nodejs-finaly-hw8.onrender.com/posts",
+									"protocol": "https",
+									"host": [
+										"two024nodejs-finaly-hw8",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "一則貼文",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://two024nodejs-finaly-hw8.onrender.com/posts/66519fbc6d8c68c95ca3bfac",
+									"protocol": "https",
+									"host": [
+										"two024nodejs-finaly-hw8",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"posts",
+										"66519fbc6d8c68c95ca3bfac"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "個人所有貼文",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4ZmFmMmYzOTRkMDExNDQzNDA3YSIsImlhdCI6MTcxNjY5Nzk0MiwiZXhwIjoxNzE3MzAyNzQyfQ.-sbQrTiG_Ai29_tf6qZSII693tnfRFwaCTI8RZQPl2g"
+									}
+								],
+								"url": {
+									"raw": "https://two024nodejs-finaly-hw8.onrender.com/post/user/",
+									"protocol": "https",
+									"host": [
+										"two024nodejs-finaly-hw8",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"post",
+										"user",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "發文",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4OWY1ODAyNjQ2OGQwMjVhNGY2ZCIsImlhdCI6MTcxNjgwMDQwOSwiZXhwIjoxNzE3NDA1MjA5fQ.JN6k2sCH66-EIheLc5WTLGYzQC4zslM_U5BIRdA1haA"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"user\": \"665189f58026468d025a4f6d\",\r\n  \"content\": \"0527 - 第五篇\",\r\n  \"tags\": [\r\n    \"node\",\"hw8\"\r\n  ],\r\n  \"type\": \"學習\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://two024nodejs-finaly-hw8.onrender.com/post",
+									"protocol": "https",
+									"host": [
+										"two024nodejs-finaly-hw8",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"post"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "修改文章",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4OWY1ODAyNjQ2OGQwMjVhNGY2ZCIsImlhdCI6MTcxNjYyMjUwNiwiZXhwIjoxNzE3MjI3MzA2fQ.GV5b5oMq-5Rl33V5I6dZvul09XQxeVYjmWUakWCOZAg"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"content\":\"我修改了最終任務\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://two024nodejs-finaly-hw8.onrender.com/post/6651912fd8a9c964548a8714",
+									"protocol": "https",
+									"host": [
+										"two024nodejs-finaly-hw8",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"post",
+										"6651912fd8a9c964548a8714"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "刪除個人一則貼文",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4ZmFmMmYzOTRkMDExNDQzNDA3YSIsImlhdCI6MTcxNjYyMzE2OSwiZXhwIjoxNzE3MjI3OTY5fQ.3X6zLUkgl9jaz8Z65bTdjGQ32YMMCbqW03rRlYB9CQs"
+									}
+								],
+								"url": {
+									"raw": "https://two024nodejs-finaly-hw8.onrender.com/post/6651912fd8a9c964548a8714",
+									"protocol": "https",
+									"host": [
+										"two024nodejs-finaly-hw8",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"post",
+										"6651912fd8a9c964548a8714"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "刪除個人全部貼文",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4ZmFmMmYzOTRkMDExNDQzNDA3YSIsImlhdCI6MTcxNjYyNTM2MywiZXhwIjoxNzE3MjMwMTYzfQ.mlx3ZAluVcTJ_K-yfEOaBU_1lsE8QUg5SwgNL36L-hc"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\":\"tom123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://two024nodejs-finaly-hw8.onrender.com/posts",
+									"protocol": "https",
+									"host": [
+										"two024nodejs-finaly-hw8",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "留言",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4ZmFmMmYzOTRkMDExNDQzNDA3YSIsImlhdCI6MTcxNjY0MTcwNSwiZXhwIjoxNzE3MjQ2NTA1fQ.a4fQxweHN51-8UdEnOT8LdOMm1HNCZ-YGX36C3Px544"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"comment\":\"456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://two024nodejs-finaly-hw8.onrender.com/posts/6651dfda0206cf5d741f0263/comment",
+									"protocol": "https",
+									"host": [
+										"two024nodejs-finaly-hw8",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"posts",
+										"6651dfda0206cf5d741f0263",
+										"comment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "按讚",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4ZmFmMmYzOTRkMDExNDQzNDA3YSIsImlhdCI6MTcxNjY5Nzk0MiwiZXhwIjoxNzE3MzAyNzQyfQ.-sbQrTiG_Ai29_tf6qZSII693tnfRFwaCTI8RZQPl2g"
+									}
+								],
+								"url": {
+									"raw": "https://two024nodejs-finaly-hw8.onrender.com/posts/6651dfda0206cf5d741f0263/like",
+									"protocol": "https",
+									"host": [
+										"two024nodejs-finaly-hw8",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"posts",
+										"6651dfda0206cf5d741f0263",
+										"like"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "取消按讚",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTE4OWY1ODAyNjQ2OGQwMjVhNGY2ZCIsImlhdCI6MTcxNjgxNTgwMCwiZXhwIjoxNzE3NDIwNjAwfQ.jtR6wQtbl9FPVKhXuKYHy1GgR4JENPLRHQ747JMHaY8"
+									}
+								],
+								"url": {
+									"raw": "https://two024nodejs-finaly-hw8.onrender.com/posts/66544be7b22dd7c452abbd90/unlike",
+									"protocol": "https",
+									"host": [
+										"two024nodejs-finaly-hw8",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"posts",
+										"66544be7b22dd7c452abbd90",
+										"unlike"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "其他",
+					"item": [
+						{
+							"name": "上傳圖片",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NDYxYTcyZmRhODkwNGI0ZTY2NGZmOCIsImlhdCI6MTcxNTg3MDMyMiwiZXhwIjoxNzE2NDc1MTIyfQ.lAZryp64onuNl_6ujsWAHhXQatNgX5rDq8f7s02kc5s",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": [],
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "https://two024nodejs-finaly-hw8.onrender.com/upload/file",
+									"protocol": "https",
+									"host": [
+										"two024nodejs-finaly-hw8",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"upload",
+										"file"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
