@@ -12,6 +12,20 @@ const userRouter = express.Router();
 
 // 註冊
 userRouter.post("/sign_up", handErrorAsync(async (req, res, next) => {
+  /**
+   * #swagger.tags = ['使用者']
+   * #swagger.description = '註冊'
+   * #swagger.reponse[200] = {
+   *  description: '註冊成功',
+   *  schema: {
+   *  status: "success",
+        user: {
+          "token": "token",
+          "name": "user"
+        }
+   *  },
+   * }
+  */
   let { name, email, password, confirmPassword, photo } = req.body;
   const notFoundKey = valSignupKey(Object.keys(req.body));
   if (notFoundKey?.name === 'Error') return next(notFoundKey);
@@ -27,10 +41,10 @@ userRouter.post("/sign_up", handErrorAsync(async (req, res, next) => {
   //信箱是否註冊過
   const user = await User.findOne({ email });
   if (user) return next(appError(400, "信箱已註冊過"));
-  
+
   //通過驗證後，將密碼加密
   password = await bcrypt.hash(password, 12);
-  
+
   //建立使用者
   const data = await User.create({ name, email, password, photo });
   sendJWT(data, 201, res);
@@ -49,7 +63,7 @@ userRouter.post("/sign_in", handErrorAsync(async (req, res, next) => {
 
   // password原本為隱藏，透過select('+password')顯示取得
   const user = await User.findOne({ email }).select('+password');
-  
+
   // 輸入密碼與雜湊密碼比對
   const auth = await bcrypt.compare(password, user.password);
   if (!auth) return next(appError(400, "密碼錯誤"));
@@ -68,7 +82,7 @@ userRouter.post("/updatePassword", isAuth, handErrorAsync(async (req, res, next)
 
   //加密密碼
   newPassword = await bcrypt.hash(password, 12);
-  
+
   //更新密碼
   const user = await User.findByIdAndUpdate(req.user.id, {
     password: newPassword
