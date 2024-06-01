@@ -15,16 +15,30 @@ userRouter.post("/users/sign_up", handErrorAsync(async (req, res, next) => {
   /**
    * #swagger.tags = ['使用者']
    * #swagger.description = '註冊'
-   * #swagger.reponse[200] = {
-   *  description: '註冊成功',
-   *  schema: {
-   *  status: "success",
+   * #swagger.parameters['body'] = {
+      in: 'body',
+      required: true,
+      type: 'object',
+      description: '資料格式',
+      schema: {
+        "$name": "使用者名稱",
+        "$email": "使用者信箱",
+        "$password": "使用者密碼",
+        "$confirmPassword": "確認密碼",
+        "sex": ["male", "female"],
+        "photo": "頭像網址"
+      }
+    }
+   * #swagger.responses[201] = {
+      description: '註冊成功',
+      schema: {
+      status: "success",
         user: {
           "token": "token",
           "name": "user"
         }
-   *  },
-   * }
+      }
+    }
   */
   let { name, email, password, confirmPassword, photo } = req.body;
   const notFoundKey = valSignupKey(Object.keys(req.body));
@@ -53,6 +67,30 @@ userRouter.post("/users/sign_up", handErrorAsync(async (req, res, next) => {
 
 // 登入
 userRouter.post("/users/sign_in", handErrorAsync(async (req, res, next) => {
+  /**
+  * #swagger.tags = ['使用者']
+  * #swagger.description = '登入'
+  * #swagger.parameters['body'] = {
+     in: 'body',
+     required: true,
+     type: 'object',
+     description: '資料格式',
+     schema: {
+       "$email": "使用者信箱",
+       "$password": "使用者密碼",
+     }
+   }
+  * #swagger.responses[201] = {
+     description: '登入成功',
+     schema: {
+       status: "success",
+       user: {
+         "token": "token",
+         "name": "user"
+       }
+     }
+   }
+ */
   let { email, password } = req.body;
   const validateEmail = validator.isEmpty(email.trim());
   if (validateEmail) return next(appError(400, "郵件未填寫"));
@@ -74,6 +112,33 @@ userRouter.post("/users/sign_in", handErrorAsync(async (req, res, next) => {
 
 //重設密碼
 userRouter.post("/users/updatePassword", isAuth, handErrorAsync(async (req, res, next) => {
+  /**
+  * #swagger.tags = ['使用者']
+  * #swagger.description = '重設密碼'
+  * #swagger.parameters['authorization'] = {
+     in: 'header',
+     description: '使用者認證',
+     required: true,
+     type: 'string'
+   }
+  * #swagger.parameters['body'] = {
+     in: 'body',
+     required: true,
+     type: 'object',
+     description: '資料格式',
+     schema: {
+       "$password": "使用者密碼",
+       "$confirmPassword": "確認密碼",
+     }
+   }
+  * #swagger.responses[200] = {
+     description: '註冊成功',
+     schema: {
+       "status": 200,
+       "message": "成功更改密碼"
+     }
+   }
+ */
   let newPassword = null;
   const { password, confirmPassword } = req.body;
   if (!password || !confirmPassword || typeof password !== 'string' || typeof confirmPassword !== 'string') return next(appError(400, "請確實填寫資訊", next));
@@ -94,6 +159,31 @@ userRouter.post("/users/updatePassword", isAuth, handErrorAsync(async (req, res,
 
 //查詢個人資料
 userRouter.get("/users/profile", isAuth, handErrorAsync(async (req, res, next) => {
+  /**
+    * #swagger.tags = ['使用者']
+    * #swagger.description = '查詢個人資料'
+    * #swagger.parameters['authorization'] = {
+       in: 'header',
+       description: '使用者認證',
+       required: true,
+       type: 'string'
+     }
+    * #swagger.responses[201] = {
+       description: '查詢成功',
+       schema: {
+         "status": "success",
+         "user": {
+             "_id": "使用者ID",
+             "name": "使用者名稱",
+             "photo": "頭像網址",
+             "likes": "按讚列表",
+             "following": "追蹤列表",
+             "followers": "被追蹤列表",
+         }
+       }
+     }
+   */
+
   const user = await User.findById(req.user.id);
   res.status(201).json({
     status: 'success',
@@ -104,6 +194,34 @@ userRouter.get("/users/profile", isAuth, handErrorAsync(async (req, res, next) =
 
 //更新個人資料
 userRouter.patch("/users/profile", isAuth, handErrorAsync(async (req, res, next) => {
+  /**
+  * #swagger.tags = ['使用者']
+  * #swagger.description = '更新個人資料'
+  * #swagger.parameters['authorization'] = {
+     in: 'header',
+     description: '使用者認證',
+     required: true,
+     type: 'string'
+   }
+   * #swagger.parameters['body'] = {
+     in: 'body',
+     required: true,
+     type: 'object',
+     description: '資料格式',
+     schema: {
+       "name": "使用者名稱",
+       "email": "使用者信箱",
+       "photo": "頭像網址"
+     }
+   }
+  * #swagger.responses[200] = {
+     description: '更新成功',
+     schema: {
+       "status": 200,
+       "message": "成功更新個人資料"
+     }
+   }
+ */
   const updateKeys = Object.keys(req.body);
   const notFoundKey = valSignupKey(updateKeys);
   if (notFoundKey?.name === 'Error') return next(notFoundKey);
@@ -116,6 +234,24 @@ userRouter.patch("/users/profile", isAuth, handErrorAsync(async (req, res, next)
 
 //追蹤
 userRouter.post("/users/:userId/follow", isAuth, handErrorAsync(async (req, res, next) => {
+  /**
+   * #swagger.tags = ['按讚及追蹤']
+   * #swagger.description = '追蹤'
+   * #swagger.parameters['authorization'] = {
+      in: 'header',
+      description: '使用者認證',
+      required: true,
+      type: 'string'
+    }
+   * #swagger.responses[201] = {
+      description: '追蹤成功',
+      schema: {
+        "status": 201,
+        "message": "追蹤成功"
+      }
+    }
+  */
+
   const regex = /^[A-Za-z0-9]+$/;
   const userId = req.params.userId;
   const authId = req.user._id.toString();
@@ -133,6 +269,23 @@ userRouter.post("/users/:userId/follow", isAuth, handErrorAsync(async (req, res,
 
 //取消追蹤
 userRouter.delete("/users/:userId/unfollow", isAuth, handErrorAsync(async (req, res, next) => {
+  /**
+    * #swagger.tags = ['按讚及追蹤']
+    * #swagger.description = '取消追蹤'
+    * #swagger.parameters['authorization'] = {
+      in: 'header',
+      description: '使用者認證',
+      required: true,
+      type: 'string'
+    }
+    * #swagger.responses[201] = {
+      description: '更新成功',
+      schema: {
+        "status": 201,
+        "message": "取消追蹤成功"
+      }
+    }
+  */
   const regex = /^[A-Za-z0-9]+$/;
   const userId = req.params.userId;
   const authId = req.user._id.toString();
@@ -150,18 +303,69 @@ userRouter.delete("/users/:userId/unfollow", isAuth, handErrorAsync(async (req, 
 
 //取得個人追蹤列表
 userRouter.get("/users/following", isAuth, handErrorAsync(async (req, res, next) => {
+  /**
+  * #swagger.tags = ['按讚及追蹤']
+  * #swagger.description = '取得個人追蹤列表'
+  * #swagger.parameters['authorization'] = {
+    in: 'header',
+    description: '使用者認證',
+    required: true,
+    type: 'string'
+  }
+  * #swagger.responses[201] = {
+    description: '取得成功',
+    schema: {
+      "status": 201,
+      "data": [
+        {
+          "name": "使用者名稱",
+          "photo": "頭像網址"
+        }
+      ]
+    }
+  }
+*/
   if (req.user === undefined) return next(appError(401, '你尚未登入！', next));
   const followingData = await User.findById(req.user.id, "following -_id")
     .populate({
       path: "following",
       select: "name photo -_id",
     });
-  resSuccess(res, 201, followingData.following === undefined ? '沒有追蹤' : [followingData.following]);
+  resSuccess(res, 201, followingData.following.length === 0 ? '沒有追蹤' : followingData.following);
 }
 ));
 
 //取得個人按讚列表
 userRouter.get("/users/getLikeList", isAuth, handErrorAsync(async (req, res, next) => {
+  /**
+     * #swagger.tags = ['按讚及追蹤']
+     * #swagger.description = '取得個人按讚列表'
+     * #swagger.parameters['authorization'] = {
+       in: 'header',
+       description: '使用者認證',
+       required: true,
+       type: 'string'
+     }
+     * #swagger.responses[201] = {
+       description: '取得成功',
+       schema:  {
+         "status": 201,
+         "data": [
+           {
+             "user": "6656dde107761d4dcea3523f",
+             "image": "",
+             "content": "0527 - 第五篇",
+             "likes": 0,
+             "type": "學習",
+             "tags": [
+                 "node,hw8"
+             ],
+             "createdAt": "2024-06-01T09:45:10.647Z"
+           }
+         ]
+       }
+     }
+   */
   if (req.user === undefined) return next(appError(401, '你尚未登入！', next));
   console.log(req.user.id);
   const likesData = await User.findById(req.user.id, "likes -_id")
@@ -170,7 +374,7 @@ userRouter.get("/users/getLikeList", isAuth, handErrorAsync(async (req, res, nex
       select: "-_id",
     });
   console.log(likesData);
-  resSuccess(res, 201, likesData.likes === undefined ? '沒有按讚' : [likesData.likes]);
+  resSuccess(res, 201, likesData.likes.length === 0 ? '沒有按讚' : likesData.likes);
 }
 ));
 

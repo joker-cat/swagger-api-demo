@@ -15,7 +15,7 @@
     "/posts": {
       "get": {
         "tags": [
-          "取得"
+          "貼文"
         ],
         "description": "取得所有貼文",
         "parameters": [
@@ -115,7 +115,7 @@
       },
       "delete": {
         "tags": [
-          "刪除"
+          "貼文"
         ],
         "description": "刪除個人所有貼文",
         "parameters": [
@@ -171,7 +171,7 @@
     "/post/user/{userId}": {
       "get": {
         "tags": [
-          "取得"
+          "貼文"
         ],
         "description": "取得個人所有貼文",
         "parameters": [
@@ -256,7 +256,9 @@
     },
     "/posts/{postId}": {
       "get": {
-        "tags": [],
+        "tags": [
+          "貼文"
+        ],
         "description": "查看單一貼文",
         "parameters": [
           {
@@ -380,7 +382,7 @@
     "/post": {
       "post": {
         "tags": [
-          "新增"
+          "貼文"
         ],
         "description": "使用者發文",
         "parameters": [
@@ -502,7 +504,7 @@
     "/posts/{postId}/comment": {
       "post": {
         "tags": [
-          "新增"
+          "留言"
         ],
         "description": "新增貼文留言",
         "parameters": [
@@ -582,7 +584,7 @@
     "/posts/{postId}/like": {
       "post": {
         "tags": [
-          "新增"
+          "按讚及追蹤"
         ],
         "description": "按讚貼文",
         "parameters": [
@@ -626,7 +628,7 @@
     "/posts/{postId}/unlike": {
       "delete": {
         "tags": [
-          "刪除"
+          "按讚及追蹤"
         ],
         "description": "取消按讚貼文",
         "parameters": [
@@ -670,7 +672,7 @@
     "/post/{postId}": {
       "patch": {
         "tags": [
-          "修改"
+          "貼文"
         ],
         "description": "修改個人貼文",
         "parameters": [
@@ -749,7 +751,7 @@
       },
       "delete": {
         "tags": [
-          "刪除"
+          "貼文"
         ],
         "description": "刪除個人貼文",
         "parameters": [
@@ -817,129 +819,335 @@
           {
             "name": "body",
             "in": "body",
+            "required": true,
+            "description": "資料格式",
             "schema": {
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "使用者名稱"
                 },
                 "email": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "使用者信箱"
                 },
                 "password": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "使用者密碼"
                 },
                 "confirmPassword": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "確認密碼"
+                },
+                "sex": {
+                  "type": "array",
+                  "example": [
+                    "male",
+                    "female"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "photo": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "頭像網址"
                 }
-              }
+              },
+              "required": [
+                "name",
+                "email",
+                "password",
+                "confirmPassword"
+              ]
             }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "201": {
+            "description": "註冊成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "example": "token"
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "user"
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       }
     },
     "/users/sign_in": {
       "post": {
-        "description": "",
+        "tags": [
+          "使用者"
+        ],
+        "description": "登入",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
+            "description": "資料格式",
             "schema": {
               "type": "object",
               "properties": {
                 "email": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "使用者信箱"
                 },
                 "password": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "使用者密碼"
                 }
-              }
+              },
+              "required": [
+                "email",
+                "password"
+              ]
             }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "201": {
+            "description": "登入成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "example": "token"
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "user"
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       }
     },
     "/users/updatePassword": {
       "post": {
-        "description": "",
+        "tags": [
+          "使用者"
+        ],
+        "description": "重設密碼",
         "parameters": [
           {
             "name": "authorization",
             "in": "header",
+            "description": "使用者認證",
+            "required": true,
             "type": "string"
           },
           {
             "name": "body",
             "in": "body",
+            "required": true,
+            "description": "資料格式",
             "schema": {
               "type": "object",
               "properties": {
                 "password": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "使用者密碼"
                 },
                 "confirmPassword": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "確認密碼"
                 }
-              }
+              },
+              "required": [
+                "password",
+                "confirmPassword"
+              ]
             }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "註冊成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "number",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "成功更改密碼"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       }
     },
     "/users/profile": {
       "get": {
-        "description": "",
+        "tags": [
+          "使用者"
+        ],
+        "description": "查詢個人資料",
         "parameters": [
           {
             "name": "authorization",
             "in": "header",
+            "description": "使用者認證",
+            "required": true,
             "type": "string"
           }
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "查詢成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "example": "使用者ID"
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "使用者名稱"
+                    },
+                    "photo": {
+                      "type": "string",
+                      "example": "頭像網址"
+                    },
+                    "likes": {
+                      "type": "string",
+                      "example": "按讚列表"
+                    },
+                    "following": {
+                      "type": "string",
+                      "example": "追蹤列表"
+                    },
+                    "followers": {
+                      "type": "string",
+                      "example": "被追蹤列表"
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       },
       "patch": {
-        "description": "",
+        "tags": [
+          "使用者"
+        ],
+        "description": "更新個人資料",
         "parameters": [
           {
             "name": "authorization",
             "in": "header",
+            "description": "使用者認證",
+            "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "資料格式",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "使用者名稱"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "使用者信箱"
+                },
+                "photo": {
+                  "type": "string",
+                  "example": "頭像網址"
+                }
+              }
+            }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "更新成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "number",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "成功更新個人資料"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       }
     },
     "/users/{userId}/follow": {
       "post": {
-        "description": "",
+        "tags": [
+          "按讚及追蹤"
+        ],
+        "description": "追蹤",
         "parameters": [
           {
             "name": "userId",
@@ -950,19 +1158,40 @@
           {
             "name": "authorization",
             "in": "header",
+            "description": "使用者認證",
+            "required": true,
             "type": "string"
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "201": {
+            "description": "追蹤成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "number",
+                  "example": 201
+                },
+                "message": {
+                  "type": "string",
+                  "example": "追蹤成功"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       }
     },
     "/users/{userId}/unfollow": {
       "delete": {
-        "description": "",
+        "tags": [
+          "按讚及追蹤"
+        ],
+        "description": "取消追蹤",
         "parameters": [
           {
             "name": "userId",
@@ -973,46 +1202,155 @@
           {
             "name": "authorization",
             "in": "header",
+            "description": "使用者認證",
+            "required": true,
             "type": "string"
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "201": {
+            "description": "更新成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "number",
+                  "example": 201
+                },
+                "message": {
+                  "type": "string",
+                  "example": "取消追蹤成功"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       }
     },
     "/users/following": {
       "get": {
-        "description": "",
+        "tags": [
+          "按讚及追蹤"
+        ],
+        "description": "取得個人追蹤列表",
         "parameters": [
           {
             "name": "authorization",
             "in": "header",
+            "description": "使用者認證",
+            "required": true,
             "type": "string"
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "201": {
+            "description": "取得成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "number",
+                  "example": 201
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "example": "使用者名稱"
+                      },
+                      "photo": {
+                        "type": "string",
+                        "example": "頭像網址"
+                      }
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       }
     },
     "/users/getLikeList": {
       "get": {
-        "description": "",
+        "tags": [
+          "按讚及追蹤"
+        ],
+        "description": "取得個人按讚列表",
         "parameters": [
           {
             "name": "authorization",
             "in": "header",
+            "description": "使用者認證",
+            "required": true,
             "type": "string"
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "201": {
+            "description": "取得成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "number",
+                  "example": 201
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "user": {
+                        "type": "string",
+                        "example": "6656dde107761d4dcea3523f"
+                      },
+                      "image": {
+                        "type": "string",
+                        "example": ""
+                      },
+                      "content": {
+                        "type": "string",
+                        "example": "0527 - 第五篇"
+                      },
+                      "likes": {
+                        "type": "number",
+                        "example": 0
+                      },
+                      "type": {
+                        "type": "string",
+                        "example": "學習"
+                      },
+                      "tags": {
+                        "type": "array",
+                        "example": [
+                          "node,hw8"
+                        ],
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "example": "2024-06-01T09:45:10.647Z"
+                      }
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       }

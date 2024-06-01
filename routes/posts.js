@@ -13,7 +13,7 @@ const postRouter = express.Router();
 //查看所有貼文
 postRouter.get(`/posts`, handErrorAsync(async (req, res) => {
   /**
- * #swagger.tags = ['取得']
+ * #swagger.tags = ['貼文']
  * #swagger.description = '取得所有貼文'
  * #swagger.responses[200] = {
     description: '所有貼文資訊',
@@ -58,7 +58,7 @@ postRouter.get(`/posts`, handErrorAsync(async (req, res) => {
 //取得個人所有貼文列表
 postRouter.get(`/post/user/:userId`, isAuth, handErrorAsync(async (req, res, next) => {
   /**
- * #swagger.tags = ['取得']
+ * #swagger.tags = ['貼文']
  * #swagger.description = '取得個人所有貼文'
  * #swagger.parameters['authorization'] = {
     in: 'header',
@@ -99,7 +99,7 @@ postRouter.get(`/post/user/:userId`, isAuth, handErrorAsync(async (req, res, nex
 //查看單一貼文
 postRouter.get(`/posts/:postId`, handErrorAsync(async (req, res, next) => {
   /**
- * #swagger.tags = ['取得]
+ * #swagger.tags = ['貼文']
  * #swagger.description = '查看單一貼文'
  * #swagger.responses[200] = {
     description: '單一貼文資訊',
@@ -154,7 +154,7 @@ postRouter.get(`/posts/:postId`, handErrorAsync(async (req, res, next) => {
 //貼文
 postRouter.post("/post", isAuth, handErrorAsync(async (req, res, next) => {
   /**
-   * #swagger.tags = ['新增']
+   * #swagger.tags = ['貼文']
    * #swagger.description = '使用者發文'
    * #swagger.parameters['authorization'] = {
       in: 'header',
@@ -213,7 +213,7 @@ postRouter.post("/post", isAuth, handErrorAsync(async (req, res, next) => {
 //新增貼文留言
 postRouter.post("/posts/:postId/comment", isAuth, handErrorAsync(async (req, res, next) => {
   /**
-* #swagger.tags = ['新增']
+* #swagger.tags = ['留言']
 * #swagger.description = '新增貼文留言'
 * #swagger.parameters['authorization'] = {
    in: 'header',
@@ -254,7 +254,7 @@ postRouter.post("/posts/:postId/comment", isAuth, handErrorAsync(async (req, res
 //新增一則貼文的讚
 postRouter.post("/posts/:postId/like", isAuth, handErrorAsync(async (req, res, next) => {
   /**
-* #swagger.tags = ['新增']
+* #swagger.tags = ['按讚及追蹤']
 * #swagger.description = '按讚貼文'
 * #swagger.parameters['authorization'] = {
    in: 'header',
@@ -285,7 +285,7 @@ postRouter.post("/posts/:postId/like", isAuth, handErrorAsync(async (req, res, n
 //取消一則貼文的讚
 postRouter.delete("/posts/:postId/unlike", isAuth, handErrorAsync(async (req, res, next) => {
   /**
-   * #swagger.tags = ['刪除']
+   * #swagger.tags = ['按讚及追蹤']
    * #swagger.description = '取消按讚貼文'
    * #swagger.parameters['authorization'] = {
       in: 'header',
@@ -316,7 +316,7 @@ postRouter.delete("/posts/:postId/unlike", isAuth, handErrorAsync(async (req, re
 //修改貼文
 postRouter.patch("/post/:postId", isAuth, handErrorAsync(async (req, res, next) => {
   /**
-  * #swagger.tags = ['修改']
+  * #swagger.tags = ['貼文']
   * #swagger.description = '修改個人貼文'
   * #swagger.parameters['authorization'] = {
      in: 'header',
@@ -364,7 +364,7 @@ postRouter.patch("/post/:postId", isAuth, handErrorAsync(async (req, res, next) 
 //刪除特定貼文
 postRouter.delete("/post/:postId", isAuth, handErrorAsync(async (req, res, next) => {
   /**
-    * #swagger.tags = ['刪除']
+    * #swagger.tags = ['貼文']
     * #swagger.description = '刪除個人貼文'
     * #swagger.parameters['authorization'] = {
        in: 'header',
@@ -397,7 +397,7 @@ postRouter.delete("/post/:postId", isAuth, handErrorAsync(async (req, res, next)
 //清空使用者所有貼文
 postRouter.delete("/posts", isAuth, handErrorAsync(async (req, res, next) => {
   /**
-   * #swagger.tags = ['刪除']
+   * #swagger.tags = ['貼文']
    * #swagger.description = '刪除個人所有貼文'
    * #swagger.parameters['authorization'] = {
       in: 'header',
