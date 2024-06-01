@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "春季nodejs_finaly_API文件",
-    "description": "示範撰寫API文件",
-    "version": "1.0.0"
+    "title": "個人作業 - 2024 六角學院春季 nodejs_HW8_swaggerAPI文件",
+    "version": "1.0.0",
+    "description": "僅作為撰寫示範使用"
   },
   "host": "localhost:3005",
   "basePath": "/",
@@ -387,6 +387,8 @@
           {
             "name": "authorization",
             "in": "header",
+            "description": "使用者認證",
+            "required": true,
             "type": "string"
           },
           {

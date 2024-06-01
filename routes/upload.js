@@ -11,7 +11,7 @@ const bucket = firebaseAdmin.storage().bucket();
 
 
 // 上傳圖片
-router.post('/file', isAuth, upload, handleErrorAsync(async (req, res, next) => {
+router.post('/upload/file', isAuth, upload, handleErrorAsync(async (req, res, next) => {
   if (!req.user) return next(appError(400, "尚未登入"));
   if (!req.files.length) return next(appError(400, "尚未上傳檔案"));
   if (req.files.length > 1) return next(appError(400, "每次上傳限一個檔案"));

@@ -11,7 +11,7 @@ const userRouter = express.Router();
 
 
 // 註冊
-userRouter.post("/sign_up", handErrorAsync(async (req, res, next) => {
+userRouter.post("/users/sign_up", handErrorAsync(async (req, res, next) => {
   /**
    * #swagger.tags = ['使用者']
    * #swagger.description = '註冊'
@@ -52,7 +52,7 @@ userRouter.post("/sign_up", handErrorAsync(async (req, res, next) => {
 ));
 
 // 登入
-userRouter.post("/sign_in", handErrorAsync(async (req, res, next) => {
+userRouter.post("/users/sign_in", handErrorAsync(async (req, res, next) => {
   let { email, password } = req.body;
   const validateEmail = validator.isEmpty(email.trim());
   if (validateEmail) return next(appError(400, "郵件未填寫"));
@@ -73,7 +73,7 @@ userRouter.post("/sign_in", handErrorAsync(async (req, res, next) => {
 ));
 
 //重設密碼
-userRouter.post("/updatePassword", isAuth, handErrorAsync(async (req, res, next) => {
+userRouter.post("/users/updatePassword", isAuth, handErrorAsync(async (req, res, next) => {
   let newPassword = null;
   const { password, confirmPassword } = req.body;
   if (!password || !confirmPassword || typeof password !== 'string' || typeof confirmPassword !== 'string') return next(appError(400, "請確實填寫資訊", next));
@@ -93,7 +93,7 @@ userRouter.post("/updatePassword", isAuth, handErrorAsync(async (req, res, next)
 ));
 
 //查詢個人資料
-userRouter.get("/profile", isAuth, handErrorAsync(async (req, res, next) => {
+userRouter.get("/users/profile", isAuth, handErrorAsync(async (req, res, next) => {
   const user = await User.findById(req.user.id);
   res.status(201).json({
     status: 'success',
@@ -103,7 +103,7 @@ userRouter.get("/profile", isAuth, handErrorAsync(async (req, res, next) => {
 ));
 
 //更新個人資料
-userRouter.patch("/profile", isAuth, handErrorAsync(async (req, res, next) => {
+userRouter.patch("/users/profile", isAuth, handErrorAsync(async (req, res, next) => {
   const updateKeys = Object.keys(req.body);
   const notFoundKey = valSignupKey(updateKeys);
   if (notFoundKey?.name === 'Error') return next(notFoundKey);
@@ -115,7 +115,7 @@ userRouter.patch("/profile", isAuth, handErrorAsync(async (req, res, next) => {
 ));
 
 //追蹤
-userRouter.post("/:userId/follow", isAuth, handErrorAsync(async (req, res, next) => {
+userRouter.post("/users/:userId/follow", isAuth, handErrorAsync(async (req, res, next) => {
   const regex = /^[A-Za-z0-9]+$/;
   const userId = req.params.userId;
   const authId = req.user._id.toString();
@@ -132,7 +132,7 @@ userRouter.post("/:userId/follow", isAuth, handErrorAsync(async (req, res, next)
 ));
 
 //取消追蹤
-userRouter.delete("/:userId/unfollow", isAuth, handErrorAsync(async (req, res, next) => {
+userRouter.delete("/users/:userId/unfollow", isAuth, handErrorAsync(async (req, res, next) => {
   const regex = /^[A-Za-z0-9]+$/;
   const userId = req.params.userId;
   const authId = req.user._id.toString();
@@ -149,7 +149,7 @@ userRouter.delete("/:userId/unfollow", isAuth, handErrorAsync(async (req, res, n
 ));
 
 //取得個人追蹤列表
-userRouter.get("/following", isAuth, handErrorAsync(async (req, res, next) => {
+userRouter.get("/users/following", isAuth, handErrorAsync(async (req, res, next) => {
   if (req.user === undefined) return next(appError(401, '你尚未登入！', next));
   const followingData = await User.findById(req.user.id, "following -_id")
     .populate({
@@ -161,7 +161,7 @@ userRouter.get("/following", isAuth, handErrorAsync(async (req, res, next) => {
 ));
 
 //取得個人按讚列表
-userRouter.get("/getLikeList", isAuth, handErrorAsync(async (req, res, next) => {
+userRouter.get("/users/getLikeList", isAuth, handErrorAsync(async (req, res, next) => {
   if (req.user === undefined) return next(appError(401, '你尚未登入！', next));
   console.log(req.user.id);
   const likesData = await User.findById(req.user.id, "likes -_id")

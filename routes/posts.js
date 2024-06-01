@@ -156,6 +156,12 @@ postRouter.post("/post", isAuth, handErrorAsync(async (req, res, next) => {
   /**
    * #swagger.tags = ['新增']
    * #swagger.description = '使用者發文'
+   * #swagger.parameters['authorization'] = {
+      in: 'header',
+      description: '使用者認證',
+      required: true,
+      type: 'string'
+    }
    * #swagger.parameters['body'] = {
       in: 'body',
       required: true,

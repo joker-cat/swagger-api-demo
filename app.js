@@ -16,8 +16,8 @@ app.use(express.json());
 app.use(cors());
 app.use(logger("dev"));
 app.use(postRouter);
-app.use('/upload', uploadRouter);
-app.use('/users', userRouter);
+app.use(uploadRouter);
+app.use(userRouter);
 app.use('/api-doc', swaggerUI.serve, swaggerUI.setup(swaggerFile));
 
 app.all("*", (req, res) => {
