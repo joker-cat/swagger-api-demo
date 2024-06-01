@@ -122,7 +122,6 @@
           {
             "name": "authorization",
             "in": "header",
-            "description": "使用者認證",
             "required": true,
             "type": "string"
           },
@@ -184,7 +183,6 @@
           {
             "name": "authorization",
             "in": "header",
-            "description": "使用者認證",
             "required": true,
             "type": "string"
           }
@@ -389,7 +387,6 @@
           {
             "name": "authorization",
             "in": "header",
-            "description": "使用者認證",
             "required": true,
             "type": "string"
           },
@@ -517,7 +514,6 @@
           {
             "name": "authorization",
             "in": "header",
-            "description": "使用者認證",
             "required": true,
             "type": "string"
           },
@@ -597,7 +593,6 @@
           {
             "name": "authorization",
             "in": "header",
-            "description": "使用者認證",
             "required": true,
             "type": "string"
           }
@@ -641,7 +636,6 @@
           {
             "name": "authorization",
             "in": "header",
-            "description": "使用者認證",
             "required": true,
             "type": "string"
           }
@@ -685,7 +679,6 @@
           {
             "name": "authorization",
             "in": "header",
-            "description": "使用者認證",
             "required": true,
             "type": "string"
           },
@@ -764,7 +757,6 @@
           {
             "name": "authorization",
             "in": "header",
-            "description": "使用者認證",
             "required": true,
             "type": "string"
           }
@@ -794,17 +786,45 @@
     },
     "/upload/file": {
       "post": {
-        "description": "",
+        "tags": [
+          "上傳圖片"
+        ],
+        "description": "上傳圖片",
         "parameters": [
           {
             "name": "authorization",
             "in": "header",
+            "description": "使用者認證",
+            "required": true,
             "type": "string"
+          },
+          {
+            "name": "upfile",
+            "in": "formData",
+            "type": "file",
+            "description": "要上傳的檔案",
+            "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "上傳成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "imgUrl": {
+                  "type": "string",
+                  "example": "圖片網址"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       }

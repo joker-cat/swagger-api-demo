@@ -62,7 +62,6 @@ postRouter.get(`/post/user/:userId`, isAuth, handErrorAsync(async (req, res, nex
  * #swagger.description = '取得個人所有貼文'
  * #swagger.parameters['authorization'] = {
     in: 'header',
-    description: '使用者認證',
     required: true,
     type: 'string'
   }
@@ -158,7 +157,6 @@ postRouter.post("/post", isAuth, handErrorAsync(async (req, res, next) => {
    * #swagger.description = '使用者發文'
    * #swagger.parameters['authorization'] = {
       in: 'header',
-      description: '使用者認證',
       required: true,
       type: 'string'
     }
@@ -213,30 +211,29 @@ postRouter.post("/post", isAuth, handErrorAsync(async (req, res, next) => {
 //新增貼文留言
 postRouter.post("/posts/:postId/comment", isAuth, handErrorAsync(async (req, res, next) => {
   /**
-* #swagger.tags = ['留言']
-* #swagger.description = '新增貼文留言'
-* #swagger.parameters['authorization'] = {
-   in: 'header',
-   description: '使用者認證',
-   required: true,
-   type: 'string'
- }
-* #swagger.responses[200] = {
-   description: '新增留言資訊',
-   schema: {
-     "status": 200,
-     "data": [
-       {
-         "comment": "留言內容",
-         "user": "留言者id",
-         "post": "留言貼文id",
-         "_id": "留言id",
-         "createdAt": "留言時間"
-       }
-     ]
-   }
- }
-*/
+    * #swagger.tags = ['留言']
+    * #swagger.description = '新增貼文留言'
+    * #swagger.parameters['authorization'] = {
+      in: 'header',
+      required: true,
+      type: 'string'
+    }
+    * #swagger.responses[200] = {
+      description: '新增留言資訊',
+      schema: {
+        "status": 200,
+        "data": [
+          {
+            "comment": "留言內容",
+            "user": "留言者id",
+            "post": "留言貼文id",
+            "_id": "留言id",
+            "createdAt": "留言時間"
+          }
+        ]
+      }
+    }
+    */
   const data = await Post.find({ _id: req.params.postId.trim() })
   if (data.length === 0) return next(appError(400, "找不到貼文"));
   const comment = req.body.comment;
@@ -254,22 +251,21 @@ postRouter.post("/posts/:postId/comment", isAuth, handErrorAsync(async (req, res
 //新增一則貼文的讚
 postRouter.post("/posts/:postId/like", isAuth, handErrorAsync(async (req, res, next) => {
   /**
-* #swagger.tags = ['按讚及追蹤']
-* #swagger.description = '按讚貼文'
-* #swagger.parameters['authorization'] = {
-   in: 'header',
-   description: '使用者認證',
-   required: true,
-   type: 'string'
- }
-* #swagger.responses[200] = {
-   description: '按讚',
-   schema: {
-     "status": 200,
-     "message": "按讚成功"
-   }
- }
-*/
+    * #swagger.tags = ['按讚及追蹤']
+    * #swagger.description = '按讚貼文'
+    * #swagger.parameters['authorization'] = {
+      in: 'header',
+      required: true,
+      type: 'string'
+    }
+    * #swagger.responses[200] = {
+      description: '按讚',
+      schema: {
+        "status": 200,
+        "message": "按讚成功"
+      }
+    }
+    */
   const data = await Post.find({ _id: req.params.postId.trim() })
   if (data.length === 0) return next(appError(400, "找不到貼文"));
   const userId = req.user._id;
@@ -289,7 +285,7 @@ postRouter.delete("/posts/:postId/unlike", isAuth, handErrorAsync(async (req, re
    * #swagger.description = '取消按讚貼文'
    * #swagger.parameters['authorization'] = {
       in: 'header',
-      description: '使用者認證',
+      
       required: true,
       type: 'string'
     }
@@ -320,7 +316,7 @@ postRouter.patch("/post/:postId", isAuth, handErrorAsync(async (req, res, next) 
   * #swagger.description = '修改個人貼文'
   * #swagger.parameters['authorization'] = {
      in: 'header',
-     description: '使用者認證',
+     
      required: true,
      type: 'string'
    }
@@ -368,7 +364,7 @@ postRouter.delete("/post/:postId", isAuth, handErrorAsync(async (req, res, next)
     * #swagger.description = '刪除個人貼文'
     * #swagger.parameters['authorization'] = {
        in: 'header',
-       description: '使用者認證',
+       
        required: true,
        type: 'string'
      }
@@ -401,7 +397,6 @@ postRouter.delete("/posts", isAuth, handErrorAsync(async (req, res, next) => {
    * #swagger.description = '刪除個人所有貼文'
    * #swagger.parameters['authorization'] = {
       in: 'header',
-      description: '使用者認證',
       required: true,
       type: 'string'
     }

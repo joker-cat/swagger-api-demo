@@ -12,6 +12,30 @@ const bucket = firebaseAdmin.storage().bucket();
 
 // 上傳圖片
 router.post('/upload/file', isAuth, upload, handleErrorAsync(async (req, res, next) => {
+  /**
+   * #swagger.tags = ['上傳圖片']
+   * #swagger.description = '上傳圖片'
+   * #swagger.parameters['authorization'] = {
+     in: 'header',
+     description: '使用者認證',
+     required: true,
+     type: 'string'
+   }
+   * #swagger.parameters['file'] = {
+      in: 'formData',
+      name: 'upfile',
+      type: 'file',
+      description: '要上傳的檔案',
+      required: true
+    }
+   * #swagger.responses[200] = {
+       description: '上傳成功',
+       schema: {
+         "status": "success",
+         "imgUrl": "圖片網址"
+     }
+   }
+   */
   if (!req.user) return next(appError(400, "尚未登入"));
   if (!req.files.length) return next(appError(400, "尚未上傳檔案"));
   if (req.files.length > 1) return next(appError(400, "每次上傳限一個檔案"));
